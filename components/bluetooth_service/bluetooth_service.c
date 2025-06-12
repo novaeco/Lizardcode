@@ -1,10 +1,12 @@
 #include "bluetooth_service.h"
 #include "esp_log.h"
 #include "esp_bt.h"
+#include "esp_gatt_defs.h"
+
+#if CONFIG_BT_BLUEDROID_ENABLED
 #include "esp_gap_ble_api.h"
 #include "esp_gatts_api.h"
 #include "esp_bt_main.h"
-#include "esp_gatt_defs.h"
 
 static const char *TAG = "BLUETOOTH_SERVICE";
 
@@ -115,4 +117,23 @@ esp_err_t bluetooth_service_stop_advertising(void)
     return esp_ble_gap_stop_advertising();
 }
 
+#else // CONFIG_BT_BLUEDROID_ENABLED
+
+esp_err_t bluetooth_service_init(void)
+{
+    ESP_LOGW(TAG, "Bluedroid stack not enabled; Bluetooth service disabled");
+    return ESP_ERR_NOT_SUPPORTED;
+}
+
+esp_err_t bluetooth_service_start_advertising(void)
+{
+    return ESP_ERR_NOT_SUPPORTED;
+}
+
+esp_err_t bluetooth_service_stop_advertising(void)
+{
+    return ESP_ERR_NOT_SUPPORTED;
+}
+
+#endif // CONFIG_BT_BLUEDROID_ENABLED
 
