@@ -60,7 +60,7 @@ esp_err_t gt911_init(i2c_port_t i2c_num, gpio_num_t sda_pin, gpio_num_t scl_pin)
         .scl_io_num = scl_pin,
         .sda_pullup_en = GPIO_PULLUP_ENABLE,
         .scl_pullup_en = GPIO_PULLUP_ENABLE,
-        .master.clk_int_freq = 400000, // 400KHz
+        .master.clk_speed = 400000, // 400KHz
     };
 
     esp_err_t ret = i2c_param_config(i2c_master_port, &conf);
