@@ -16,8 +16,10 @@ static void update_file_list(void)
 {
     lv_obj_clean(file_list_obj); // Clear existing list items
 
+    const char *path_text = lv_label_get_text(current_path_label);
     char current_path[128];
-    lv_label_get_text(current_path_label, current_path, sizeof(current_path));
+    strncpy(current_path, path_text, sizeof(current_path) - 1);
+    current_path[sizeof(current_path) - 1] = '\0';
 
     // Dummy lists for now, will be populated by storage_service_list_dir
     // In a real implementation, you'd have dynamic lists or arrays to store results
@@ -50,8 +52,10 @@ static void update_file_list(void)
 
 static void parent_dir_event_cb(lv_event_t *e)
 {
+    const char *path_text = lv_label_get_text(current_path_label);
     char path[128];
-    lv_label_get_text(current_path_label, path, sizeof(path));
+    strncpy(path, path_text, sizeof(path) - 1);
+    path[sizeof(path) - 1] = '\0';
     char *last_slash = strrchr(path, '/');
     if (last_slash && last_slash != path) {
         *last_slash = '\0';
@@ -116,7 +120,7 @@ void create_file_explorer_page(lv_obj_t *parent)
     current_path_label = lv_label_create(file_explorer_screen);
     lv_label_set_text(current_path_label, "/");
     lv_obj_set_style_text_font(current_path_label, &lv_font_montserrat_20, 0);
-    lv_obj_set_style_align(current_path_label, LV_ALIGN_LEFT, 0);
+    lv_obj_set_style_align(current_path_label, LV_ALIGN_LEFT_MID, 0);
 
     file_list_obj = lv_list_create(file_explorer_screen);
     lv_obj_set_size(file_list_obj, LV_HOR_RES - 20, LV_VER_RES - 150);
