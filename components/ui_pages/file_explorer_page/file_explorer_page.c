@@ -9,6 +9,8 @@ static lv_obj_t *file_list_obj;
 static lv_obj_t *current_path_label;
 static storage_type_t current_storage_type = STORAGE_TYPE_SPIFFS;
 
+static void parent_dir_event_cb(lv_event_t *e);
+
 static void update_file_list(void)
 {
     lv_obj_clean(file_list_obj); // Clear existing list items
@@ -24,18 +26,7 @@ static void update_file_list(void)
     // Example: Add parent directory option
     if (strcmp(current_path, "/") != 0) {
         item = lv_list_add_btn(file_list_obj, LV_SYMBOL_UP, "..");
-        lv_obj_add_event_cb(item, [](lv_event_t *e) {
-            char path[128];
-            lv_label_get_text(current_path_label, path, sizeof(path));
-            char *last_slash = strrchr(path, '/');
-            if (last_slash && last_slash != path) {
-                *last_slash = '\0';
-            } else {
-                strcpy(path, "/");
-            }
-            lv_label_set_text(current_path_label, path);
-            update_file_list();
-        }, LV_EVENT_CLICKED, NULL);
+        lv_obj_add_event_cb(item, parent_dir_event_cb, LV_EVENT_CLICKED, NULL);
     }
 
     // Placeholder for actual file/directory listing
@@ -54,6 +45,20 @@ static void update_file_list(void)
     // if (ret != ESP_OK) {
     //     ESP_LOGE(TAG, "Failed to list directory: %s", esp_err_to_name(ret));
     // }
+}
+
+static void parent_dir_event_cb(lv_event_t *e)
+{
+    char path[128];
+    lv_label_get_text(current_path_label, path, sizeof(path));
+    char *last_slash = strrchr(path, '/');
+    if (last_slash && last_slash != path) {
+        *last_slash = '\0';
+    } else {
+        strcpy(path, "/");
+    }
+    lv_label_set_text(current_path_label, path);
+    update_file_list();
 }
 
 static void spiffs_btn_event_cb(lv_event_t *e)

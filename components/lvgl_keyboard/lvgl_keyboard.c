@@ -6,6 +6,8 @@ static const char *TAG = "LVGL_KEYBOARD";
 static lv_obj_t *keyboard;
 static lv_obj_t *target_textarea;
 
+static void textarea_event_cb(lv_event_t *e);
+
 // AZERTY keyboard keymap for lowercase
 static const char *kb_map_azerty_lc[] = {
     "a", "z", "e", "r", "t", "y", "u", "i", "o", "p", "\n",
@@ -78,6 +80,14 @@ lv_obj_t *lvgl_keyboard_create(lv_obj_t *parent)
     return keyboard;
 }
 
+static void textarea_event_cb(lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    if (code == LV_EVENT_DEFOCUSED) {
+        lv_obj_add_flag(keyboard, LV_OBJ_FLAG_HIDDEN);
+    }
+}
+
 void lvgl_keyboard_set_textarea(lv_obj_t *kb, lv_obj_t *ta)
 {
     keyboard = kb;
@@ -86,12 +96,7 @@ void lvgl_keyboard_set_textarea(lv_obj_t *kb, lv_obj_t *ta)
     lv_obj_clear_flag(keyboard, LV_OBJ_FLAG_HIDDEN); // Show keyboard when setting textarea
 
     // Add event handler to hide keyboard when textarea is unfocused
-    lv_obj_add_event_cb(target_textarea, [](lv_event_t *e) {
-        lv_event_code_t code = lv_event_get_code(e);
-        if (code == LV_EVENT_DEFOCUSED) {
-            lv_obj_add_flag(keyboard, LV_OBJ_FLAG_HIDDEN);
-        }
-    }, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(target_textarea, textarea_event_cb, LV_EVENT_ALL, NULL);
 }
 
 
