@@ -9,6 +9,10 @@
 
 #define GT911_MAX_TOUCHES 5
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct {
     uint8_t  finger_id;
     uint16_t x;
@@ -36,6 +40,10 @@ esp_err_t gt911_init(i2c_port_t i2c_num, gpio_num_t sda_pin, gpio_num_t scl_pin)
  * @return ESP_OK on success, otherwise an error code.
  */
 esp_err_t gt911_read_touch_data(gt911_touch_data_t *data);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // GT911_TOUCH_H
 
