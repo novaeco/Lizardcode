@@ -4,9 +4,10 @@
 #define LGFX_USE_V1
 #include <LovyanGFX.hpp>
 
-// Configuration pour le contrôleur ST7262 (RGB Parallel)
-// Les broches et résolutions peuvent nécessiter des ajustements spécifiques à votre carte Waveshare.
-// Veuillez vérifier la documentation de votre carte Waveshare ESP32-S3-Touch-LCD 7 pouces pour les broches exactes.
+// Configuration pour l'écran 7" Waveshare basé sur le contrôleur ST7262.
+// LovyanGFX ne propose pas encore de classe dédiée à ce contrôleur.
+// On utilise donc un panneau LCD générique (Panel_ST7789 ici) uniquement pour compiler
+// l'exemple. Les paramètres RGB devront être ajustés manuellement pour le ST7262.
 
 class LGFX : public lgfx::LGFX_Device
 {
