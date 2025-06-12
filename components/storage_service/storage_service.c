@@ -6,6 +6,8 @@
 #include "driver/sdmmc_host.h"
 #include "driver/sdmmc_defs.h"
 #include "sdmmc_cmd.h"
+#include <stdio.h>
+#include <string.h>
 
 static const char *TAG = "STORAGE_SERVICE";
 
