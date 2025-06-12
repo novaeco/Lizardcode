@@ -18,6 +18,12 @@
 #define LGFX_HAS_EFONTS 0
 #endif
 
+#if __has_include("../Fonts/GFXFF/TomThumb.h")
+#define LGFX_HAS_GFXFF 1
+#else
+#define LGFX_HAS_GFXFF 0
+#endif
+
 namespace lgfx
 {
  inline namespace v1
@@ -288,6 +294,7 @@ namespace lgfx
     extern const lgfx::FixedBMPfont AsciiFont8x16;
     extern const lgfx::FixedBMPfont AsciiFont24x48;
 
+#if LGFX_HAS_GFXFF
     extern const lgfx::GFXfont TomThumb                 ;
     extern const lgfx::GFXfont FreeMono9pt7b            ;
     extern const lgfx::GFXfont FreeMono12pt7b           ;
@@ -350,6 +357,7 @@ namespace lgfx
     extern const lgfx::GFXfont DejaVu40;
     extern const lgfx::GFXfont DejaVu56;
     extern const lgfx::GFXfont DejaVu72;
+#endif
 
 #if LGFX_HAS_JAPAN_FONT
     extern const lgfx::U8g2font lgfxJapanMincho_8  ;
