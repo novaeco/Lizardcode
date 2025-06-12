@@ -16,7 +16,7 @@ Ce projet fournit une interface utilisateur complète basée sur LVGL pour le mi
 ## Arborescence du projet
 
 ```
-esp32_s3_lvgl_project/
+Lizardcode/
 ├── CMakeLists.txt
 ├── sdkconfig.defaults
 ├── partition.csv
@@ -110,7 +110,7 @@ Les broches GPIO pour l'écran LCD (ST7262) et le contrôleur tactile (GT911) so
 
 1.  **Naviguez vers le répertoire du projet** :
     ```bash
-    cd esp32_s3_lvgl_project
+    cd Lizardcode  # adaptez si vous avez cloné le dépôt ailleurs
     ```
 
 2.  **Choisissez la cible ESP32‑S3** (à faire une seule fois) :
