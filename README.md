@@ -93,8 +93,8 @@ esp32_s3_lvgl_project/
 
 ## Prérequis
 
-- **ESP-IDF v5.x** (dernière version stable compatible avec LVGL 9.2.2). Suivez les instructions d'installation officielles : [https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html)
-- **LVGL 9.2.2** : Le projet est configuré pour utiliser LVGL 9.2.2. Assurez-vous que votre installation ESP-IDF est compatible ou mettez à jour la version de LVGL si nécessaire.
+- **ESP-IDF v5.x** (dernière version stable compatible avec LVGL 9). Suivez les instructions d'installation officielles : [https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html)
+- **LVGL 9** : La bibliothèque LVGL est récupérée automatiquement depuis le registre des composants grâce au fichier `idf_component.yml`. Exécutez `idf.py add-dependency` lors de la première compilation pour télécharger cette dépendance.
 - **Waveshare ESP32-S3-Touch-LCD 7 pouces & 5B** : Ce projet est spécifiquement conçu pour ces écrans. Les configurations des broches dans `LovyanGFX/LGFX_Config.hpp` et `gt911_touch/gt911.c` devront être vérifiées et ajustées si vous utilisez une autre carte ou un autre écran.
 
 ## Configuration du matériel
@@ -113,24 +113,34 @@ Les broches GPIO pour l'écran LCD (ST7262) et le contrôleur tactile (GT911) so
     cd esp32_s3_lvgl_project
     ```
 
-2.  **Configurez le projet** (optionnel, mais recommandé pour vérifier les options) :
+2.  **Choisissez la cible ESP32‑S3** (à faire une seule fois) :
+    ```bash
+    idf.py set-target esp32s3
+    ```
+
+3.  **Récupérez les dépendances du projet** (LVGL notamment) :
+    ```bash
+    idf.py add-dependency
+    ```
+
+4.  **Configurez le projet** (optionnel mais recommandé pour vérifier les options) :
     ```bash
     idf.py menuconfig
     ```
     Assurez-vous que les options LVGL, Wi-Fi, Bluetooth, NVS et SPIFFS sont activées comme spécifié dans `sdkconfig.defaults`.
 
-3.  **Compilez le projet** :
+5.  **Compilez le projet** :
     ```bash
     idf.py build
     ```
 
-4.  **Flashez le firmware sur l'ESP32-S3** :
+6.  **Flashez le firmware sur l'ESP32-S3** :
     ```bash
     idf.py -p /dev/ttyUSB0 flash
     ```
     Remplacez `/dev/ttyUSB0` par le port série de votre ESP32-S3.
 
-5.  **Monitorez les logs** :
+7.  **Monitorez les logs** :
     ```bash
     idf.py -p /dev/ttyUSB0 monitor
     ```
