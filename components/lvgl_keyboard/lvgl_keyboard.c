@@ -26,7 +26,7 @@ static const char *kb_map_azerty_uc[] = {
 
 // AZERTY keyboard keymap for special characters (accents and symbols)
 static const char *kb_map_azerty_spec[] = {
-    "&", "é", "\"", "\'', "(", "-", "è", "_", "ç", "à", "\n",
+    "&", "é", "\"", "'", "(", "-", "è", "_", "ç", "à", "\n",
     ")", "=", "+", "{", "}", "[", "]", "@", "#", "~", "\n",
     "<", ">", "|", "\\", "/", "*", "€", "£", "$", "°", "\n",
     LV_SYMBOL_LEFT, LV_SYMBOL_KEYBOARD, " ", LV_SYMBOL_RIGHT, LV_SYMBOL_BACKSPACE, LV_SYMBOL_OK, ""
