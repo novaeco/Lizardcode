@@ -19,7 +19,9 @@ file(GLOB SRCS
      ${LGFX_ROOT}/src/lgfx/v1/touch/*.cpp
      )
 
-set(COMPONENT_SRCS ${SRCS} ${CMAKE_CURRENT_LIST_DIR}/../LovyanGFX.cpp)
+# The LovyanGFX.cpp file is located one directory above the lib folder.
+# Adjust the path accordingly so CMake can find the source correctly.
+set(COMPONENT_SRCS ${SRCS} ${CMAKE_CURRENT_LIST_DIR}/../../LovyanGFX.cpp)
 
 if (IDF_VERSION_MAJOR GREATER_EQUAL 5)
     set(COMPONENT_REQUIRES nvs_flash efuse esp_lcd driver esp_timer)
