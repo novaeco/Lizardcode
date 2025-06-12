@@ -19,7 +19,6 @@ void create_console_debug_page(lv_obj_t *parent)
     lv_obj_t *log_area = lv_textarea_create(console_debug_screen);
     lv_obj_set_size(log_area, LV_HOR_RES - 40, LV_VER_RES / 2);
     lv_textarea_set_placeholder_text(log_area, i18n_service_get_string("system_logs_placeholder"));
-    lv_textarea_set_cursor_hidden(log_area, true);
     lv_obj_set_style_bg_color(log_area, lv_color_hex(0x222222), 0);
     lv_obj_set_style_text_color(log_area, lv_color_hex(0x00FF00), 0);
 

@@ -22,7 +22,6 @@ public:
     { // Bus parallèle RGB
       auto cfg = _bus_instance.config();
 
-      cfg.panel = &_panel_instance; // Associe le bus au panneau
       cfg.pin_wr = 18;  // WR (Write) pin
       cfg.pin_rd = 19;  // RD (Read) pin
       cfg.pin_rs = 20;  // RS (Register Select) pin
@@ -53,32 +52,15 @@ public:
 
       cfg.pin_cs           = -1;  // CS non utilisé en mode RGB parallèle
       cfg.pin_rst          = 14;  // Broche RST (Reset) (peut varier)
-      cfg.pin_backlight    = 15;  // Broche du rétroéclairage (peut varier)
       cfg.panel_width      = 800; // Largeur de l'écran (pour 7 pouces)
       cfg.panel_height     = 480; // Hauteur de l'écran (pour 7 pouces)
       cfg.offset_x         = 0;   // Décalage X
       cfg.offset_y         = 0;   // Décalage Y
       cfg.invert           = false; // Inversion des couleurs
       cfg.rgb_order        = false; // Ordre des couleurs RGB/BGR
-      cfg.with_depth       = lgfx::color_depth_16; // Profondeur de couleur 16 bits
-      cfg.display_dir      = lgfx::direction_Right; // Orientation de l'affichage
-      cfg.backlight_pwm    = true; // Utilisation du PWM pour le rétroéclairage
 
       // Paramètres spécifiques au contrôleur RGB (ST7262)
       // Ces valeurs sont génériques et peuvent nécessiter des ajustements précis pour le ST7262
-      cfg.pll_d2           = 0; // PLL_D2
-      cfg.pll_m            = 0; // PLL_M
-      cfg.pll_n            = 0; // PLL_N
-      cfg.hsync_pulse_width = 1; // Largeur d'impulsion HSYNC
-      cfg.hsync_back_porch = 40; // Porche arrière HSYNC
-      cfg.hsync_front_porch = 8; // Porche avant HSYNC
-      cfg.vsync_pulse_width = 1; // Largeur d'impulsion VSYNC
-      cfg.vsync_back_porch = 8;  // Porche arrière VSYNC
-      cfg.vsync_front_porch = 8; // Porche avant VSYNC
-      cfg.pclk_active_neg  = false; // Polarité du PCLK
-      cfg.de_active_high   = true; // Polarité du DE
-      cfg.hsync_active_high = false; // Polarité du HSYNC
-      cfg.vsync_active_high = false; // Polarité du VSYNC
 
       _panel_instance.config(cfg);
     }
