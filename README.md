@@ -16,7 +16,7 @@ Ce projet fournit une interface utilisateur complète basée sur LVGL pour le mi
 ## Arborescence du projet
 
 ```
-esp32_s3_lvgl_project/
+Lizardcode/
 ├── CMakeLists.txt
 ├── sdkconfig.defaults
 ├── partition.csv
@@ -110,7 +110,7 @@ Les broches GPIO pour l'écran LCD (ST7262) et le contrôleur tactile (GT911) so
 
 1.  **Naviguez vers le répertoire du projet** :
     ```bash
-    cd esp32_s3_lvgl_project
+    cd Lizardcode  # adaptez si vous avez cloné le dépôt ailleurs
     ```
 
 2.  **Choisissez la cible ESP32‑S3** (à faire une seule fois) :
@@ -128,6 +128,12 @@ Les broches GPIO pour l'écran LCD (ST7262) et le contrôleur tactile (GT911) so
     idf.py menuconfig
     ```
     Assurez-vous que les options LVGL, Wi-Fi, Bluetooth, NVS et SPIFFS sont activées comme spécifié dans `sdkconfig.defaults`.
+
+    Si la compilation échoue avec une erreur telle que `undefined reference to 'esp_ble_gap_start_advertising'`,
+    vérifiez dans `menuconfig` que la pile *Bluedroid* est activée et que l'option
+    *NimBLE* est désactivée. En cas de doute, supprimez un éventuel fichier
+    `sdkconfig` pour repartir des valeurs par défaut fournies dans
+    `sdkconfig.defaults`.
 
 5.  **Compilez le projet** :
     ```bash
