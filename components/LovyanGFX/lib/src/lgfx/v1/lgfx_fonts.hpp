@@ -6,6 +6,18 @@
 #include "misc/enum.hpp"
 #include "../utility/pgmspace.h"
 
+#if __has_include("../Fonts/IPA/lgfx_font_japan.h")
+#define LGFX_HAS_JAPAN_FONT 1
+#else
+#define LGFX_HAS_JAPAN_FONT 0
+#endif
+
+#if __has_include("../Fonts/efont/lgfx_efont_cn.h")
+#define LGFX_HAS_EFONTS 1
+#else
+#define LGFX_HAS_EFONTS 0
+#endif
+
 namespace lgfx
 {
  inline namespace v1
@@ -339,6 +351,7 @@ namespace lgfx
     extern const lgfx::GFXfont DejaVu56;
     extern const lgfx::GFXfont DejaVu72;
 
+#if LGFX_HAS_JAPAN_FONT
     extern const lgfx::U8g2font lgfxJapanMincho_8  ;
     extern const lgfx::U8g2font lgfxJapanMincho_12 ;
     extern const lgfx::U8g2font lgfxJapanMincho_16 ;
@@ -375,7 +388,9 @@ namespace lgfx
     extern const lgfx::U8g2font lgfxJapanGothicP_32;
     extern const lgfx::U8g2font lgfxJapanGothicP_36;
     extern const lgfx::U8g2font lgfxJapanGothicP_40;
+#endif
 
+#if LGFX_HAS_EFONTS
     extern const lgfx::U8g2font efontCN_10   ;
     extern const lgfx::U8g2font efontCN_10_b ;
     extern const lgfx::U8g2font efontCN_10_bi;
@@ -459,6 +474,7 @@ namespace lgfx
     extern const lgfx::U8g2font efontTW_24_b ;
     extern const lgfx::U8g2font efontTW_24_bi;
     extern const lgfx::U8g2font efontTW_24_i ;
+#endif
   }
 
   struct FontMetrics
