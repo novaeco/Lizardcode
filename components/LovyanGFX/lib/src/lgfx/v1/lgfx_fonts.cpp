@@ -4,11 +4,22 @@
 #include "misc/pixelcopy.hpp"
 #include "LGFXBase.hpp"
 
+#if __has_include("../Fonts/IPA/lgfx_font_japan.h")
 #include "../Fonts/IPA/lgfx_font_japan.h"
+#define LGFX_HAS_JAPAN_FONT 1
+#else
+#define LGFX_HAS_JAPAN_FONT 0
+#endif
+
+#if __has_include("../Fonts/efont/lgfx_efont_cn.h")
 #include "../Fonts/efont/lgfx_efont_cn.h"
 #include "../Fonts/efont/lgfx_efont_ja.h"
 #include "../Fonts/efont/lgfx_efont_kr.h"
 #include "../Fonts/efont/lgfx_efont_tw.h"
+#define LGFX_HAS_EFONTS 1
+#else
+#define LGFX_HAS_EFONTS 0
+#endif
 
 #include <stdint.h>
 #include <stddef.h>
@@ -1189,6 +1200,7 @@ label_nextbyte: /// 次のデータを取得する;
     const FixedBMPfont AsciiFont8x16  = { FontLib8x16 , font0_info,  8, 16, 13 };
     const FixedBMPfont AsciiFont24x48 = { FontLib24x48, fontlib24x48_info, 24, 48, 40 };
 
+#if LGFX_HAS_JAPAN_FONT
     const U8g2font lgfxJapanMincho_8   = { lgfx_font_japan_mincho_8    };
     const U8g2font lgfxJapanMincho_12  = { lgfx_font_japan_mincho_12   };
     const U8g2font lgfxJapanMincho_16  = { lgfx_font_japan_mincho_16   };
@@ -1225,7 +1237,9 @@ label_nextbyte: /// 次のデータを取得する;
     const U8g2font lgfxJapanGothicP_32 = { lgfx_font_japan_gothic_p_32 };
     const U8g2font lgfxJapanGothicP_36 = { lgfx_font_japan_gothic_p_36 };
     const U8g2font lgfxJapanGothicP_40 = { lgfx_font_japan_gothic_p_40 };
+#endif
 
+#if LGFX_HAS_EFONTS
     const U8g2font efontCN_10     = { lgfx_efont_cn_10    };
     const U8g2font efontCN_10_b   = { lgfx_efont_cn_10_b  };
     const U8g2font efontCN_10_bi  = { lgfx_efont_cn_10_bi };
@@ -1247,7 +1261,6 @@ label_nextbyte: /// 次のデータを取得する;
     const U8g2font efontCN_24_bi  = { lgfx_efont_cn_24_bi };
     const U8g2font efontCN_24_i   = { lgfx_efont_cn_24_i  };
 
-    const U8g2font efontJA_10     = { lgfx_efont_ja_10    };
     const U8g2font efontJA_10_b   = { lgfx_efont_ja_10_b  };
     const U8g2font efontJA_10_bi  = { lgfx_efont_ja_10_bi };
     const U8g2font efontJA_10_i   = { lgfx_efont_ja_10_i  };
@@ -1309,6 +1322,7 @@ label_nextbyte: /// 次のデータを取得する;
     const U8g2font efontTW_24_b   = { lgfx_efont_tw_24_b  };
     const U8g2font efontTW_24_bi  = { lgfx_efont_tw_24_bi };
     const U8g2font efontTW_24_i   = { lgfx_efont_tw_24_i  };
+#endif
   }
  }
 }
