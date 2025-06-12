@@ -14,7 +14,7 @@ static void theme_apply_cb(lv_theme_t *th, lv_obj_t *obj)
     if (lv_obj_check_type(obj, &lv_obj_class)) {
         lv_obj_add_style(obj, &style_default, 0);
     }
-    else if (lv_obj_check_type(obj, &lv_btn_class)) {
+    else if (lv_obj_check_type(obj, &lv_button_class)) {
         lv_obj_add_style(obj, &style_btn, 0);
         lv_obj_add_style(obj, &style_btn_pressed, LV_STATE_PRESSED);
     }
@@ -70,7 +70,11 @@ void lvgl_theme_init(void)
     lv_style_set_pad_all(&style_list, 5);
 
     // Create and set the theme
-    lv_theme_t *th = lv_theme_create_from_default(lv_display_get_default(), lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED), LV_COLOR_BLACK, LV_COLOR_WHITE);
+    lv_theme_t *th = lv_theme_default_init(lv_display_get_default(),
+                                           lv_palette_main(LV_PALETTE_BLUE),
+                                           lv_palette_main(LV_PALETTE_RED),
+                                           false,
+                                           lv_font_default());
     lv_theme_set_apply_cb(th, theme_apply_cb);
     lv_display_set_theme(lv_display_get_default(), th);
 
