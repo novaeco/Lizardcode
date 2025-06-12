@@ -5,8 +5,6 @@ set(COMPONENT_ADD_INCLUDEDIRS
     ${CMAKE_CURRENT_LIST_DIR}/..
     )
 file(GLOB SRCS
-     ${LGFX_ROOT}/src/lgfx/Fonts/efont/*.c
-     ${LGFX_ROOT}/src/lgfx/Fonts/IPA/*.c
      ${LGFX_ROOT}/src/lgfx/utility/*.c
      ${LGFX_ROOT}/src/lgfx/v1/*.cpp
      ${LGFX_ROOT}/src/lgfx/v1/misc/*.cpp
