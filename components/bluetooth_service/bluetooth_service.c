@@ -11,13 +11,23 @@ static const char *TAG = "BLUETOOTH_SERVICE";
 // Declare a GATT server interface
 static esp_gatt_if_t gatts_if;
 
+// Advertising parameters
+static esp_ble_adv_params_t adv_params = {
+    .adv_int_min        = 0x20, // 32 * 0.625ms = 20ms
+    .adv_int_max        = 0x40, // 64 * 0.625ms = 40ms
+    .adv_type           = ADV_TYPE_IND,
+    .own_addr_type      = BLE_ADDR_TYPE_PUBLIC,
+    .channel_map        = ADV_CHNL_ALL,
+    .adv_filter_policy  = ADV_FILTER_ALLOW_SCAN_ANY_CON_ANY,
+};
+
 // Declare a GATT server callback function
-static void gatts_profile_event_handler(esp_gatts_if_t gatts_if, esp_ble_gatts_cb_event_t event, esp_gatt_if_t app_id, esp_ble_gatts_req_t *param)
+static void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatt_if, esp_ble_gatts_cb_param_t *param)
 {
     switch (event) {
         case ESP_GATTS_REG_EVT:
-            ESP_LOGI(TAG, "REGISTER_APP_EVT, status %d, app_id %d\n", app_id, gatts_if);
-            gatts_if = app_id;
+            ESP_LOGI(TAG, "REGISTER_APP_EVT, status %d, app_id %d", param->reg.status, param->reg.app_id);
+            gatts_if = gatt_if;
             break;
         default:
             break;
@@ -44,16 +54,6 @@ static void gap_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param
             break;
     }
 }
-
-// Advertising parameters
-static esp_ble_adv_params_t adv_params = {
-    .adv_int_min        = 0x20, // 32 * 0.625ms = 20ms
-    .adv_int_max        = 0x40, // 64 * 0.625ms = 40ms
-    .adv_type           = ADV_TYPE_IND,
-    .own_addr_type      = BLE_ADDR_TYPE_PUBLIC,
-    .channel_map        = ADV_CHNL_ALL,
-    .adv_filter_policy = ADV_FILTER_ALLOW_SCAN_ANY_CON_ANY,
-};
 
 // Advertising data
 static uint8_t adv_data[] = {
@@ -96,7 +96,7 @@ esp_err_t bluetooth_service_init(void)
 
     esp_ble_gap_register_callback(gap_event_handler);
     esp_ble_gatts_register_callback(gatts_profile_event_handler);
-    esp_ble_gatts_app_reg(0); // Register an application ID
+    esp_ble_gatts_app_register(0); // Register an application ID
 
     esp_ble_gap_set_device_name("ESP32-S3 LVGL");
     esp_ble_gap_config_adv_data_raw(adv_data, sizeof(adv_data));
