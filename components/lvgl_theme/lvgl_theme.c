@@ -74,7 +74,7 @@ void lvgl_theme_init(void)
                                            lv_palette_main(LV_PALETTE_BLUE),
                                            lv_palette_main(LV_PALETTE_RED),
                                            false,
-                                           lv_font_default());
+                                           lv_font_get_default());
     lv_theme_set_apply_cb(th, theme_apply_cb);
     lv_display_set_theme(lv_display_get_default(), th);
 

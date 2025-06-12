@@ -1,5 +1,6 @@
 #include "lvgl_port.h"
 #include "LovyanGFX.hpp"
+#include "LGFX_Config.hpp"
 #include "gt911.h"
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
