@@ -4,11 +4,13 @@
 #include "misc/pixelcopy.hpp"
 #include "LGFXBase.hpp"
 
+#ifdef LGFX_ENABLE_EXTENDED_FONTS
 #include "../Fonts/IPA/lgfx_font_japan.h"
 #include "../Fonts/efont/lgfx_efont_cn.h"
 #include "../Fonts/efont/lgfx_efont_ja.h"
 #include "../Fonts/efont/lgfx_efont_kr.h"
 #include "../Fonts/efont/lgfx_efont_tw.h"
+#endif
 
 #include <stdint.h>
 #include <stddef.h>
@@ -1189,6 +1191,7 @@ label_nextbyte: /// 次のデータを取得する;
     const FixedBMPfont AsciiFont8x16  = { FontLib8x16 , font0_info,  8, 16, 13 };
     const FixedBMPfont AsciiFont24x48 = { FontLib24x48, fontlib24x48_info, 24, 48, 40 };
 
+#ifdef LGFX_ENABLE_EXTENDED_FONTS
     const U8g2font lgfxJapanMincho_8   = { lgfx_font_japan_mincho_8    };
     const U8g2font lgfxJapanMincho_12  = { lgfx_font_japan_mincho_12   };
     const U8g2font lgfxJapanMincho_16  = { lgfx_font_japan_mincho_16   };
@@ -1225,7 +1228,9 @@ label_nextbyte: /// 次のデータを取得する;
     const U8g2font lgfxJapanGothicP_32 = { lgfx_font_japan_gothic_p_32 };
     const U8g2font lgfxJapanGothicP_36 = { lgfx_font_japan_gothic_p_36 };
     const U8g2font lgfxJapanGothicP_40 = { lgfx_font_japan_gothic_p_40 };
+#endif
 
+#ifdef LGFX_ENABLE_EXTENDED_FONTS
     const U8g2font efontCN_10     = { lgfx_efont_cn_10    };
     const U8g2font efontCN_10_b   = { lgfx_efont_cn_10_b  };
     const U8g2font efontCN_10_bi  = { lgfx_efont_cn_10_bi };
@@ -1309,6 +1314,7 @@ label_nextbyte: /// 次のデータを取得する;
     const U8g2font efontTW_24_b   = { lgfx_efont_tw_24_b  };
     const U8g2font efontTW_24_bi  = { lgfx_efont_tw_24_bi };
     const U8g2font efontTW_24_i   = { lgfx_efont_tw_24_i  };
+#endif
   }
  }
 }
