@@ -93,8 +93,8 @@ esp32_s3_lvgl_project/
 
 ## Prérequis
 
-- **ESP-IDF v5.x** (dernière version stable compatible avec LVGL 9.2.2). Suivez les instructions d'installation officielles : [https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html)
-- **LVGL 9.2.2** : Le projet est configuré pour utiliser LVGL 9.2.2. Assurez-vous que votre installation ESP-IDF est compatible ou mettez à jour la version de LVGL si nécessaire.
+- **ESP-IDF v5.x** (dernière version stable compatible avec LVGL 9). Suivez les instructions d'installation officielles : [https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html)
+- **LVGL 9** : La bibliothèque LVGL est récupérée automatiquement depuis le registre des composants grâce au fichier `idf_component.yml`. Exécutez `idf.py add-dependency` lors de la première compilation pour télécharger cette dépendance.
 - **Waveshare ESP32-S3-Touch-LCD 7 pouces & 5B** : Ce projet est spécifiquement conçu pour ces écrans. Les configurations des broches dans `LovyanGFX/LGFX_Config.hpp` et `gt911_touch/gt911.c` devront être vérifiées et ajustées si vous utilisez une autre carte ou un autre écran.
 
 ## Configuration du matériel
