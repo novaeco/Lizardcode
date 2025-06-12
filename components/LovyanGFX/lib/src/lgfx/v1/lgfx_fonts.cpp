@@ -17,6 +17,12 @@
 #include "../Fonts/efont/lgfx_efont_tw.h"
 #endif
 
+#if __has_include("../Fonts/GFXFF/TomThumb.h")
+#define LGFX_HAS_GFXFF 1
+#else
+#define LGFX_HAS_GFXFF 0
+#endif
+
 #include <stdint.h>
 #include <stddef.h>
 #include <math.h>
@@ -1094,6 +1100,7 @@ label_nextbyte: /// 次のデータを取得する;
     using namespace lgfx;
 
     // Original Adafruit_GFX "Free Fonts"
+#if LGFX_HAS_GFXFF
     #include "../Fonts/GFXFF/TomThumb.h"  // TT1
 
     #include "../Fonts/GFXFF/FreeMono9pt7b.h"  // FF1 or FM9
@@ -1181,6 +1188,7 @@ label_nextbyte: /// 次のデータを取得する;
     #include "../Fonts/Font8x8C64.h"
     #include "../Fonts/Ascii24x48.h"
     #include "../Fonts/Ascii8x16.h"
+#endif
 
     static constexpr uint8_t font0_info[]         = {  0, 255, 5 }; // start code, end code, width
     static constexpr uint8_t font8x8c64_info[]    = { 32, 143, 8 }; // start code, end code, width
