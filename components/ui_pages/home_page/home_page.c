@@ -4,6 +4,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "i18n_service.h"
+#include <time.h>
 
 static const char *TAG = "HOME_PAGE";
 static lv_obj_t *time_label;

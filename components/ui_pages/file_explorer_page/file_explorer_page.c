@@ -3,6 +3,7 @@
 #include "esp_log.h"
 #include "storage_service.h"
 #include "i18n_service.h"
+#include <string.h>
 
 static const char *TAG = "FILE_EXPLORER_PAGE";
 static lv_obj_t *file_list_obj;
