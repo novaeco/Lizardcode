@@ -3,12 +3,12 @@
 #include "esp_bt.h"
 #include "esp_gatt_defs.h"
 
+static const char *TAG = "BLUETOOTH_SERVICE";
+
 #if CONFIG_BT_BLUEDROID_ENABLED
 #include "esp_gap_ble_api.h"
 #include "esp_gatts_api.h"
 #include "esp_bt_main.h"
-
-static const char *TAG = "BLUETOOTH_SERVICE";
 
 // Declare a GATT server interface
 static esp_gatt_if_t gatts_if;
