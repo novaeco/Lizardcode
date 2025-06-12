@@ -16,13 +16,17 @@ esp_err_t ota_service_start_update(const char *url)
 {
     ESP_LOGI(TAG, "Starting OTA update from %s", url);
 
-    esp_http_client_config_t config = {
+    esp_http_client_config_t http_config = {
         .url = url,
         .cert_pem = NULL, // No certificate for HTTP, provide if using HTTPS with custom certs
         .timeout_ms = 5000,
     };
 
-    esp_err_t ret = esp_https_ota(&config);
+    esp_https_ota_config_t ota_config = {
+        .http_config = &http_config,
+    };
+
+    esp_err_t ret = esp_https_ota(&ota_config);
     if (ret == ESP_OK) {
         ESP_LOGI(TAG, "OTA update successful, restarting...");
         esp_restart();

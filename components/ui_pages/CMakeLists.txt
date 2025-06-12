@@ -5,4 +5,4 @@ idf_component_register(SRCS "home_page/home_page.c"
                      "console_debug_page/console_debug_page.c"
                      INCLUDE_DIRS "home_page" "wifi_bt_page" "file_explorer_page"
                                   "settings_page" "console_debug_page"
-                     REQUIRES lvgl storage_service)
+                     REQUIRES lvgl storage_service i18n_service)
