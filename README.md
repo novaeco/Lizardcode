@@ -129,6 +129,12 @@ Les broches GPIO pour l'écran LCD (ST7262) et le contrôleur tactile (GT911) so
     ```
     Assurez-vous que les options LVGL, Wi-Fi, Bluetooth, NVS et SPIFFS sont activées comme spécifié dans `sdkconfig.defaults`.
 
+    Si la compilation échoue avec une erreur telle que `undefined reference to 'esp_ble_gap_start_advertising'`,
+    vérifiez dans `menuconfig` que la pile *Bluedroid* est activée et que l'option
+    *NimBLE* est désactivée. En cas de doute, supprimez un éventuel fichier
+    `sdkconfig` pour repartir des valeurs par défaut fournies dans
+    `sdkconfig.defaults`.
+
 5.  **Compilez le projet** :
     ```bash
     idf.py build
