@@ -1,6 +1,14 @@
 #include "bluetooth_service.h"
 #include "esp_log.h"
 
+/*
+ * bluetooth_service currently relies on the Bluedroid host stack. Using
+ * NimBLE will result in missing symbols such as esp_ble_gap_start_advertising.
+ */
+#if CONFIG_BT_NIMBLE_ENABLED
+#error "bluetooth_service requires the Bluedroid host. Disable NimBLE in menuconfig (Component config -> Bluetooth -> Host)."
+#endif
+
 #if CONFIG_BT_BLUEDROID_ENABLED
 #include "esp_bt.h"
 #include "esp_gatt_defs.h"

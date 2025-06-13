@@ -132,8 +132,9 @@ Les broches GPIO pour l'écran LCD (ST7262) et le contrôleur tactile (GT911) so
     Si la compilation échoue avec un message du type `undefined reference to 'esp_ble_gap_start_advertising'`,
     ouvrez `idf.py menuconfig` puis rendez-vous dans **Component config → Bluetooth → Host**.
     Sélectionnez **Bluedroid – Dual-mode** et assurez-vous que l'option **NimBLE – BLE only** est
-    désactivée. En cas de doute, supprimez le fichier `sdkconfig` pour repartir des valeurs par défaut
-    fournies dans `sdkconfig.defaults`.
+    désactivée. Un message d'erreur de compilation a désormais été ajouté si NimBLE est activé par inadvertance.
+    En cas de doute, supprimez le fichier `sdkconfig` (ou exécutez `idf.py fullclean`) pour repartir
+    des valeurs par défaut fournies dans `sdkconfig.defaults`.
 
 5.  **Compilez le projet** :
     ```bash
