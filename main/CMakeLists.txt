@@ -1,0 +1,17 @@
+idf_component_register(
+    SRCS
+        "main.c"
+        "ui.c"
+        "touch_manager.c"
+        "lcd_manager.c"
+        "wifi_manager.c"
+        "ble_manager.c"
+        "rs485_manager.c"
+        "can_manager.c"
+        "gpio_manager.c"
+        "storage_manager.c"
+    INCLUDE_DIRS
+        "."
+    REQUIRES
+        lvgl
+)
