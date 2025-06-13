@@ -1,7 +1,11 @@
 #include "bluetooth_service.h"
 #include "esp_log.h"
+
+#if CONFIG_BT_BLUEDROID_ENABLED
 #include "esp_bt.h"
 #include "esp_gatt_defs.h"
+
+#endif
 
 static const char *TAG = "BLUETOOTH_SERVICE";
 
